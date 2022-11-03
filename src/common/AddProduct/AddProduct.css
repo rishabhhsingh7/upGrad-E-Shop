@@ -1,0 +1,32 @@
+.main-container {
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    margin-top: 80px;
+    flex-direction: column;
+}
+
+.card {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+.input-style {
+    width: 100%;
+}
+
+.form-control {
+    width: 80%;
+}
+
+.card-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}

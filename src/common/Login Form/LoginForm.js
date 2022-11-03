@@ -85,7 +85,7 @@ function LoginForm(props) {
           "x-auth-token",
           response.headers["x-auth-token"]
         );
-        window.sessionStorage.setItem("isLoggedIn", true);
+        window.localStorage.setItem("isLoggedIn", true);
         window.sessionStorage.setItem("role", response.data.role);
         history.push("/products");
       } else {

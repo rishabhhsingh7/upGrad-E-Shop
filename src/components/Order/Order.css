@@ -1,18 +1,17 @@
-.main-container {
+.main-container{
     width: 100%;
 }
 
-.Content {
+.Content{
     width: 100%;
     margin-top: 80px;
 }
-
-.stepper {
+.stepper{
     width: 60%;
     margin: auto;
 }
 
-.stepper-control {
+.stepper-control{
     width: 60%;
     margin: auto;
     margin-top: 70px;
@@ -20,76 +19,67 @@
     flex-direction: row;
     justify-content: space-between;
 }
-
-.step-content {
+.step-content{
     display: flex;
     flex-direction: row;
     width: 75%;
     margin: auto;
 }
 
-.container {
+.container{
     display: flex;
     flex-direction: column;
 }
 
-.image-container {
+.image-container{
     width: 35%;
     height: auto;
     align-items: center;
 }
-
-.image {
+.image{
     width: 80%;
 }
-
-.details-container {
+.details-container{
     width: 30%;
     border-left: 1px solid white;
     margin-left: 4%;
 }
-
-.quantity-input {
+.quantity-input{
     width: 40px;
     background-color: lightgrey;
     border-radius: 5px;
 }
 
-.card {
+.order-card{
     width: 90%;
     margin: auto;
     margin-top: 30px;
 }
 
-.form-container {
+.form-container{
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-.order-image-content {
+.order-image-content{
     width: 40%;
     margin-top: 30px;
     border: 1px solid lightgray;
     border-radius: 10px;
     box-shadow: lightgrey;
 }
-
-.order-image {
+.order-image{
     width: 100%;
 }
-
-.order-card {
+.order-detail-card{
     width: 60%;
 }
-
-.success-container {
+.success-container{
     width: 100%;
     margin-top: 100px;
 }
-
-.success-card {
+.success-card{
     width: 80%;
     margin: auto;
 }

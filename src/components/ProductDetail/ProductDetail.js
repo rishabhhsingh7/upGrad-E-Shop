@@ -33,79 +33,81 @@ const ProductDetail = (props) => {
     <div className="main-container">
       <Header baseURL={props.baseURL} />
       <div className="content">
-        {/* we have three containers one for displaying image and the one for the details of the product 
-                    and the other for quantity input fields and place Order botton  */}
-        <div className="container image-container">
-          <img src={product.imageURL} alt={product.name} className="image" />
-        </div>
-        <div className="container details-container">
-          {/* Product Name
-                         Manufacturer
-                         Price
-                         in stock or out of stock
-                         available items
-                         About product
-                    */}
+        <div style={{ display: "flex", flexDirection: "row", width: `100%` }}>
+          {/* we have three containers one for displaying image and the one for the details of the product 
+                        and the other for quantity input fields and place Order botton  */}
+          <div className="container image-container">
+            <img src={product.imageURL} alt={product.name} className="image" />
+          </div>
+          <div className="container details-container">
+            {/* Product Name
+                            Manufacturer
+                            Price
+                            in stock or out of stock
+                            available items
+                            About product
+                        */}
 
-          <Typography variant="h4">{product.name}</Typography>
-          <hr style={{ fontSize: "2px", width: "100%" }} />
-          <Typography>
-            <b>Manufacturer:</b> {product.manufacturer}
-          </Typography>
-          <Typography>M.R.P-{product.price}</Typography>
-          {product.availableItems !== 0 &&
-            (() => {
-              return (
-                <Typography style={{ color: "green" }}>
-                  <b>In stock</b>
-                </Typography>
-              );
-            })()}
+            <Typography variant="h4">{product.name}</Typography>
+            <hr style={{ fontSize: "2px", width: "100%" }} />
+            <Typography>
+              <b>Manufacturer:</b> {product.manufacturer}
+            </Typography>
+            <Typography>M.R.P-{product.price}</Typography>
+            {product.availableItems !== 0 &&
+              (() => {
+                return (
+                  <Typography style={{ color: "green" }}>
+                    <b>In stock</b>
+                  </Typography>
+                );
+              })()}
 
-          {product.availableItems === 0 &&
-            (() => {
-              return (
-                <Typography style={{ color: "red-brown" }}>
-                  <b>Out Of Stock</b>
-                </Typography>
-              );
-            })()}
-          <Typography>
-            <b>Available Items:</b> {product.availableItems}
-          </Typography>
-          <hr style={{ fontSize: "2px", width: "100%" }} />
-          <Typography variant="h6">
-            <b>About this item</b>
-          </Typography>
-          <Typography variant="p">{product.description}</Typography>
-        </div>
-        <div class="container utils-container">
-          <FormControl
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-              marginBottom: "10%",
-            }}
-          >
-            <label htmlFor="quantity">Quantity</label>
-            <input
-              type="number"
-              id="quantity"
-              value={quantity}
-              min={1}
-              max={product.availableItems}
-              className="quantity-field"
-              onChange={handleQuantityChange}
-            />
-          </FormControl>
-          <Button
-            component={Link}
-            to={`/products/${product.productId}/order?quantity=${quantity}`}
-            variant="contained"
-            style={{ backgroundColor: "#ea5215" }}
-          >
-            Place order
-          </Button>
+            {product.availableItems === 0 &&
+              (() => {
+                return (
+                  <Typography style={{ color: "red-brown" }}>
+                    <b>Out Of Stock</b>
+                  </Typography>
+                );
+              })()}
+            <Typography>
+              <b>Available Items:</b> {product.availableItems}
+            </Typography>
+            <hr style={{ fontSize: "2px", width: "100%" }} />
+            <Typography variant="h6">
+              <b>About this item</b>
+            </Typography>
+            <Typography variant="p">{product.description}</Typography>
+          </div>
+          <div class="container utils-container">
+            <FormControl
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                marginBottom: "10%",
+              }}
+            >
+              <label htmlFor="quantity">Quantity</label>
+              <input
+                type="number"
+                id="quantity"
+                value={quantity}
+                min={1}
+                max={product.availableItems}
+                className="quantity-field"
+                onChange={handleQuantityChange}
+              />
+            </FormControl>
+            <Button
+              component={Link}
+              to={`/products/${product._id}/order?quantity=${quantity}`}
+              variant="contained"
+              style={{ backgroundColor: "#ea5215" }}
+            >
+              Place order
+            </Button>
+          </div>
         </div>
       </div>
     </div>
