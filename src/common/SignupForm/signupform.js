@@ -13,6 +13,7 @@ import {
 import "./SignupForm.css";
 import loadData from "../../middleware/loadData";
 import { Link } from "react-router-dom";
+import Header from "../header/Header";
 
 function SignUpForm(props) {
   const [email, setEmail] = useState("");
@@ -153,130 +154,135 @@ function SignUpForm(props) {
   };
 
   return (
-    <Card className="signup-card">
-      <CardHeader color="primary" title="Sign Up" />
+    <div>
+      <Header baseURL={props.baseURL} />
+      <Card className="signup-card">
+        <CardHeader color="primary" title="Sign Up" />
 
-      <CardContent>
-        <FormControl>
-          <InputLabel id="email-label" htmlFor="email">
-            Email*
-          </InputLabel>
-          <Input
-            id="email"
-            type="text"
-            value={email}
-            placeholder="Please Enter Your Email"
-            onChange={(e) => emailChange(e)}
-          />
-          <FormHelperText>
-            <Typography style={{ color: "red" }}>{emailErrMessage}</Typography>
-          </FormHelperText>
-        </FormControl>
-      </CardContent>
+        <CardContent>
+          <FormControl>
+            <InputLabel id="email-label" htmlFor="email">
+              Email*
+            </InputLabel>
+            <Input
+              id="email"
+              type="text"
+              value={email}
+              placeholder="Please Enter Your Email"
+              onChange={(e) => emailChange(e)}
+            />
+            <FormHelperText>
+              <Typography style={{ color: "red" }}>
+                {emailErrMessage}
+              </Typography>
+            </FormHelperText>
+          </FormControl>
+        </CardContent>
 
-      <CardContent>
-        <FormControl>
-          <InputLabel id="firstname-label" htmlFor="firstname">
-            First Name*
-          </InputLabel>
-          <Input
-            id="name"
-            type="text"
-            value={firstname}
-            placeholder="Enter First Name"
-            onChange={(e) => firstnameChange(e)}
-          />
-          <FormHelperText>
-            <Typography style={{ color: "red" }}>
-              {firstNameErrMessage}
-            </Typography>
-          </FormHelperText>
-        </FormControl>
-      </CardContent>
+        <CardContent>
+          <FormControl>
+            <InputLabel id="firstname-label" htmlFor="firstname">
+              First Name*
+            </InputLabel>
+            <Input
+              id="name"
+              type="text"
+              value={firstname}
+              placeholder="Enter First Name"
+              onChange={(e) => firstnameChange(e)}
+            />
+            <FormHelperText>
+              <Typography style={{ color: "red" }}>
+                {firstNameErrMessage}
+              </Typography>
+            </FormHelperText>
+          </FormControl>
+        </CardContent>
 
-      <CardContent>
-        <FormControl>
-          <InputLabel id="last_name-label" htmlFor="last_name">
-            Last Name*
-          </InputLabel>
-          <Input
-            id="last_name"
-            type="text"
-            value={lastname}
-            placeholder="Please Enter Your Last Name"
-            onChange={(e) => lastNameChange(e)}
-          />
-          <FormHelperText>
-            <Typography style={{ color: "red" }}>
-              {lastNameErrMessage}
-            </Typography>
-          </FormHelperText>
-        </FormControl>
-      </CardContent>
+        <CardContent>
+          <FormControl>
+            <InputLabel id="last_name-label" htmlFor="last_name">
+              Last Name*
+            </InputLabel>
+            <Input
+              id="last_name"
+              type="text"
+              value={lastname}
+              placeholder="Please Enter Your Last Name"
+              onChange={(e) => lastNameChange(e)}
+            />
+            <FormHelperText>
+              <Typography style={{ color: "red" }}>
+                {lastNameErrMessage}
+              </Typography>
+            </FormHelperText>
+          </FormControl>
+        </CardContent>
 
-      <CardContent>
-        <FormControl>
-          <InputLabel id="contact-label" htmlFor="contact">
-            Contact*
-          </InputLabel>
-          <Input
-            id="contact"
-            type="text"
-            value={contactNumber}
-            placeholder="Enter your Mobile Number"
-            onChange={(e) => contactChange(e)}
-          />
-          <FormHelperText>
-            <Typography style={{ color: "red" }}>
-              {contactErrMessage}
-            </Typography>
-          </FormHelperText>
-        </FormControl>
-      </CardContent>
+        <CardContent>
+          <FormControl>
+            <InputLabel id="contact-label" htmlFor="contact">
+              Contact*
+            </InputLabel>
+            <Input
+              id="contact"
+              type="text"
+              value={contactNumber}
+              placeholder="Enter your Mobile Number"
+              onChange={(e) => contactChange(e)}
+            />
+            <FormHelperText>
+              <Typography style={{ color: "red" }}>
+                {contactErrMessage}
+              </Typography>
+            </FormHelperText>
+          </FormControl>
+        </CardContent>
 
-      <CardContent>
-        <FormControl>
-          <InputLabel id="password-label" htmlFor="password">
-            Password*
-          </InputLabel>
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            placeholder="Please Enter Your Password"
-            onChange={(e) => {
-              passwordChange(e);
-            }}
-          />
-          <FormHelperText>
-            <Typography style={{ color: "red" }}>
-              {passwordErrMessage}
-            </Typography>
-          </FormHelperText>
-        </FormControl>
-      </CardContent>
+        <CardContent>
+          <FormControl>
+            <InputLabel id="password-label" htmlFor="password">
+              Password*
+            </InputLabel>
+            <Input
+              id="password"
+              type="password"
+              value={password}
+              placeholder="Please Enter Your Password"
+              onChange={(e) => {
+                passwordChange(e);
+              }}
+            />
+            <FormHelperText>
+              <Typography style={{ color: "red" }}>
+                {passwordErrMessage}
+              </Typography>
+            </FormHelperText>
+          </FormControl>
+        </CardContent>
 
-      <CardContent>
-        <Typography>{responseMessage}</Typography>
-      </CardContent>
+        <CardContent>
+          <Typography>{responseMessage}</Typography>
+        </CardContent>
 
-      <CardContent>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => onsubmitHandler()}
-        >
-          <Typography>Submit</Typography>
-        </Button>
-      </CardContent>
+        <CardContent>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => onsubmitHandler()}
+          >
+            <Typography>Submit</Typography>
+          </Button>
+        </CardContent>
 
-      <CardContent>
-        <Typography>Already have an account?</Typography>
-        <Link to="/login" className="link">
-          Login
-        </Link>
-      </CardContent>
-    </Card>
+        <CardContent>
+          <Typography>Already have an account?</Typography>
+          <Link to="/login" className="link">
+            Login
+          </Link>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 

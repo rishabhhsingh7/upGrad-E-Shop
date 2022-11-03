@@ -1,6 +1,11 @@
 import { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./home/Home";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import Products from "./products/Products";
 import LoginForm from "../common/loginform/LoginForm";
 import SignUpForm from "../common/signupform/SignupForm";
 
@@ -14,7 +19,18 @@ class Controller extends Component {
             path="/"
             exact
             render={() => {
-              return <Home baseURL={this.baseURL} />;
+              return window.sessionStorage.getItem("isLoggedIn") ==
+                undefined ? (
+                <Redirect to="/login" />
+              ) : (
+                <Redirect to="/products" />
+              );
+            }}
+          />
+          <Route
+            path="/products"
+            render={() => {
+              return <Products baseURL={this.baseURL} />;
             }}
           />
           <Route

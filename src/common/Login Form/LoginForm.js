@@ -15,6 +15,7 @@ import { btoa } from "b2a";
 import axios from "axios";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import "./LoginForm.css";
+import Header from "../header/Header";
 
 ///Login form component
 function LoginForm(props) {
@@ -84,84 +85,79 @@ function LoginForm(props) {
           "x-auth-token",
           response.headers["x-auth-token"]
         );
+        window.sessionStorage.setItem("isLoggedIn", true);
         window.sessionStorage.setItem("role", response.data.role);
-        history.push("/");
+        history.push("/products");
       } else {
         setResMessage(response.data.message);
       }
     });
   };
 
-  //style for thelogin page card container
-  const loginCardStyle = {
-    display: "flex",
-    flexDirection: "column",
-    width: "30%",
-    height: "50%",
-    margin: "15% auto",
-    justifyContent: "center",
-    alignItems: "center",
-  };
-
   ///return
   return (
-    <Card className="loginCardStyle">
-      <CardHeader title="Login" />
+    <div>
+      <Header baseURL={props.baseURL} />
+      <Card className="loginCardStyle">
+        <CardHeader title="Login" />
 
-      <CardContent>
-        <FormControl>
-          <InputLabel id="email-label" htmlFor="email">
-            Email
-          </InputLabel>
-          <Input
-            id="email"
-            type="text"
-            value={email}
-            placeholder="Please Enter Your Email"
-            onChange={(e) => emailChange(e)}
-          />
-          <FormHelperText>
-            <Typography style={{ color: "red" }}>{emailErrMessage}</Typography>
-          </FormHelperText>
-        </FormControl>
-      </CardContent>
+        <CardContent>
+          <FormControl>
+            <InputLabel id="email-label" htmlFor="email">
+              Email
+            </InputLabel>
+            <Input
+              id="email"
+              type="text"
+              value={email}
+              placeholder="Please Enter Your Email"
+              onChange={(e) => emailChange(e)}
+            />
+            <FormHelperText>
+              <Typography style={{ color: "red" }}>
+                {emailErrMessage}
+              </Typography>
+            </FormHelperText>
+          </FormControl>
+        </CardContent>
 
-      <CardContent>
-        <FormControl>
-          <InputLabel id="password-label" htmlFor="password">
-            Password
-          </InputLabel>
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            placeholder="Please Enter Your Password"
-            onChange={(e) => {
-              passwordChange(e);
-            }}
-          />
-          <FormHelperText>
-            <Typography style={{ color: "red" }}>{passErrMessage}</Typography>
-          </FormHelperText>
-        </FormControl>
-      </CardContent>
+        <CardContent>
+          <FormControl>
+            <InputLabel id="password-label" htmlFor="password">
+              Password
+            </InputLabel>
+            <Input
+              id="password"
+              type="password"
+              value={password}
+              placeholder="Please Enter Your Password"
+              onChange={(e) => {
+                passwordChange(e);
+              }}
+            />
+            <FormHelperText>
+              <Typography style={{ color: "red" }}>{passErrMessage}</Typography>
+            </FormHelperText>
+          </FormControl>
+        </CardContent>
 
-      <CardContent>
-        <Typography>{responseMessage}</Typography>
-      </CardContent>
+        <CardContent>
+          <Typography>{responseMessage}</Typography>
+        </CardContent>
 
-      <CardContent>
-        <Button variant="contained" color="primary" onClick={handleLogin}>
-          <Typography>Login</Typography>
-        </Button>
-      </CardContent>
+        <CardContent>
+          <Button variant="contained" color="primary" onClick={handleLogin}>
+            <Typography>Login</Typography>
+          </Button>
+        </CardContent>
 
-      <CardContent>
-        <Link to="/signup" className="link">
-          Sign Up
-        </Link>
-      </CardContent>
-    </Card>
+        <CardContent>
+          <Link to="/signup" className="link">
+            Sign Up
+          </Link>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
