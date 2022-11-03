@@ -1,0 +1,36 @@
+.header-links{
+    width: 93%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.search-bar{
+    margin: auto 2%;
+    width: 40%;
+    height: 40px;
+    border: 0px;
+    border-radius: 5px;
+}
+
+.search-bar:active{
+    border: 0px;
+    border-radius: 5px;
+}
+
+.links-container{
+    list-style: none;
+    display: flex;
+    width: 15%;
+    justify-content: space-around;
+    margin: auto 2%;
+    float: right;
+}
+
+.links{
+    text-decoration: none;
+    color: #ffff;
+}
+a{
+    cursor: pointer;   
+}
