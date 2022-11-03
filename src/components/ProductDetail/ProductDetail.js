@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ProductDetail.css";
 import Header from "../../common/header/Header";
 import { useParams, useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import loadData from "../../middleware/loadData";
 import { Button, FormControl, Typography, InputLabel } from "@material-ui/core";
 
@@ -14,7 +15,7 @@ const ProductDetail = (props) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleQuantityChange = (event) => {
-    setQuantity();
+    setQuantity(event.target.value);
   };
 
   useEffect(() => {
@@ -91,14 +92,18 @@ const ProductDetail = (props) => {
               type="number"
               id="quantity"
               value={quantity}
-              defaultValue={1}
               min={1}
               max={product.availableItems}
               className="quantity-field"
               onChange={handleQuantityChange}
             />
           </FormControl>
-          <Button variant="contained" style={{ backgroundColor: "#ea5215" }}>
+          <Button
+            component={Link}
+            to={`/products/${product.productId}/order?quantity=${quantity}`}
+            variant="contained"
+            style={{ backgroundColor: "#ea5215" }}
+          >
             Place order
           </Button>
         </div>

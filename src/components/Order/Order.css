@@ -1,0 +1,95 @@
+.main-container {
+    width: 100%;
+}
+
+.Content {
+    width: 100%;
+    margin-top: 80px;
+}
+
+.stepper {
+    width: 60%;
+    margin: auto;
+}
+
+.stepper-control {
+    width: 60%;
+    margin: auto;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.step-content {
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    margin: auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-container {
+    width: 35%;
+    height: auto;
+    align-items: center;
+}
+
+.image {
+    width: 80%;
+}
+
+.details-container {
+    width: 30%;
+    border-left: 1px solid white;
+    margin-left: 4%;
+}
+
+.quantity-input {
+    width: 40px;
+    background-color: lightgrey;
+    border-radius: 5px;
+}
+
+.card {
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.form-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order-image-content {
+    width: 40%;
+    margin-top: 30px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: lightgrey;
+}
+
+.order-image {
+    width: 100%;
+}
+
+.order-card {
+    width: 60%;
+}
+
+.success-container {
+    width: 100%;
+    margin-top: 100px;
+}
+
+.success-card {
+    width: 80%;
+    margin: auto;
+}

@@ -9,6 +9,7 @@ import Products from "./products/Products";
 import LoginForm from "../common/loginform/LoginForm";
 import SignUpForm from "../common/signupform/SignupForm";
 import ProductDetail from "./productdetail/ProductDetail";
+import Order from "./order/Order";
 
 class Controller extends Component {
   baseURL = "http://localhost:8000/api";
@@ -47,6 +48,12 @@ class Controller extends Component {
             exact
             render={() => {
               return <ProductDetail baseURL={this.baseURL} />;
+            }}
+          />
+          <Route
+            path="/products/:id/order"
+            render={() => {
+              return <Order baseURL={this.baseURL} />;
             }}
           />
           <Route

@@ -35,6 +35,7 @@ function Products(props) {
       });
   }, []);
 
+  //whenever the search query changes load the data
   useEffect(() => {
     var url = props.baseURL + "/products" + history.location.search;
     //load all products from server

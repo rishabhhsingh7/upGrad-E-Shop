@@ -18,29 +18,39 @@ import loadData from "../../middleware/loadData";
 function Header(props) {
   const history = useHistory();
   history.baseURL = props.baseURL;
-  console.log(history.baseURL);
+  var pathname = history.location.pathname;
+  var queryStr = history.location.search;
+  console.log(history);
   //for category select menu
   const [categories, setCategories] = useState([]);
-  //selected category value
+  //selected category value  SortBy value product name and direction only if path is '/products'
   var [category, setCategory] = useState(
-    history.location.search === ""
-      ? ""
-      : history.location.search.split("&")[0].split("=")[1]
+    pathname === "/products"
+      ? queryStr === ""
+        ? ""
+        : queryStr.split("&")[0].split("=")[1]
+      : ""
   );
   var [sortBy, setSortBy] = useState(
-    history.location.search === ""
-      ? ""
-      : history.location.search.split("&")[2].split("=")[1]
+    pathname === "/products"
+      ? queryStr === ""
+        ? ""
+        : queryStr.split("&")[2].split("=")[1]
+      : ""
   );
   var [direction, setDirection] = useState(
-    history.location.search === ""
-      ? ""
-      : history.location.search.split("&")[1].split("=")[1]
+    pathname === "/products"
+      ? queryStr === ""
+        ? ""
+        : queryStr.split("&")[1].split("=")[1]
+      : ""
   );
   var [productname, setProductName] = useState(
-    history.location.search === ""
-      ? ""
-      : history.location.search.split("&")[3].split("=")[1]
+    pathname === "/products"
+      ? queryStr === ""
+        ? ""
+        : queryStr.split("&")[3].split("=")[1]
+      : ""
   );
 
   //handle catecory input field change
