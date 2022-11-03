@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import AppBar from "@material-ui/core/AppBar";
 import {
   FormControl,
@@ -15,46 +16,55 @@ import Search from "@material-ui/icons/Search";
 import loadData from "../../middleware/loadData";
 
 function Header(props) {
+  const history = useHistory();
+  history.baseURL = props.baseURL;
+  console.log(history.baseURL);
   //for category select menu
   const [categories, setCategories] = useState([]);
   //selected category value
-  var [category, setCategory] = useState("");
-  var [sortBy, setSortBy] = useState("");
-  var [productname, setProductName] = useState("");
+  var [category, setCategory] = useState(
+    history.location.search === ""
+      ? ""
+      : history.location.search.split("&")[0].split("=")[1]
+  );
+  var [sortBy, setSortBy] = useState(
+    history.location.search === ""
+      ? ""
+      : history.location.search.split("&")[2].split("=")[1]
+  );
+  var [direction, setDirection] = useState(
+    history.location.search === ""
+      ? ""
+      : history.location.search.split("&")[1].split("=")[1]
+  );
+  var [productname, setProductName] = useState(
+    history.location.search === ""
+      ? ""
+      : history.location.search.split("&")[3].split("=")[1]
+  );
 
   //handle catecory input field change
   const onCategoryChange = (event) => {
     setCategory(event.target.value);
-
-    var url =
-      props.baseURL +
-      `/products?category=${event.target.value}&sortBy=${
-        sortBy === "" ? "" : sortBy.split(" ")[0]
-      }&direction=${sortBy === "" ? "DESC" : sortBy.split(" ")[1]}`;
-    loadData(url, "get", null, null, null)
-      .then((response) => {
-        props.setProducts(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    var url = `/products?category=${event.target.value}&name=&sortBy=${sortBy}=&direction=`;
+    history.push(url);
   };
 
   //handle sortBy input field change
   const onSortByChange = (event) => {
-    setSortBy(event.target.value);
-    var url =
-      props.baseURL +
-      `/products?category=${event.target.value}&sortBy=${
-        sortBy === "" ? "" : sortBy.split(" ")[0]
-      }&direction=${sortBy === "" ? "DESC" : sortBy.split(" ")[1]}`;
-    loadData(url, "get", null, null, null)
-      .then((response) => {
-        props.setProducts(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (event.target.value !== "updatedAt" || event.target.value !== "") {
+      setSortBy(event.target.value.split(" ")[0]);
+      setDirection(event.target.value.split(" ")[1]);
+      var url = `/products?category=${category}&name=${productname}&sortBy=${
+        event.target.value.split(" ")[0]
+      }&direction=${event.target.value.split(" ")[1]}`;
+      history.push(url);
+    } else {
+      setSortBy(event.target.value);
+      setDirection("DESC");
+      var url = `/products?category=${category}&name=${productname}&sortBy=${event.target.value}&direction=DESC}`;
+      history.push(url);
+    }
   };
 
   //handle product name input field change
@@ -65,30 +75,20 @@ function Header(props) {
   //Handling Logout
   const onLogout = () => {
     window.sessionStorage.clear();
+    history.push("/");
   };
 
   //handling searh product
   const onSearchClick = () => {
-    var url =
-      props.baseURL +
-      `/products?category=${category}&name=${productname}&sortBy=${
-        sortBy === "" ? "" : sortBy.split(" ")[0]
-      }&direction=${sortBy === "" ? "DESC" : sortBy.split(" ")[1]}`;
-    loadData(url, "get", null, null, null)
-      .then((response) => {
-        props.setProducts(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    var url = `/products?category=${category}&name=${productname}&sortBy=${sortBy}&direction=${direction}`;
+    history.push(url);
   };
 
   //after the component load
   useEffect(() => {
     //load all the categories from server
-    loadData(`${props.baseURL}/products/categories`, "get", null, null, null)
+    loadData(`${history.baseURL}/products/categories`, "get", null, null, null)
       .then((response) => {
-        debugger;
         setCategories(response.data);
       })
       .catch((err) => {
